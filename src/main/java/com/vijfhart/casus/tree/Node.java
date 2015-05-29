@@ -7,7 +7,7 @@ public interface Node <E extends Node<E>> extends Comparable <E>, LevelComparabl
     /** get parent van node*/
     E getParent();
     /** set parent van node*/
-    E setParent(E node);
+    void setParent(E node);
     /** geeft aan of het een leaf node betreft*/
     boolean isLeaf();
 }
