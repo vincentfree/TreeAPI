@@ -9,7 +9,7 @@ import java.util.ListIterator;
 public interface TreeIterable extends Iterable {
     /**
      *
-     * @return Iterator of TreeIterator
+     * @return Iterator or TreeIterator
      */
     Iterator iterator();
 }
