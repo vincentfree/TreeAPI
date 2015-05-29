@@ -1,7 +1,6 @@
 package com.vijfhart.casus.tree;
 
 import java.util.Iterator;
-import java.util.ListIterator;
 
 /**
  * Created by Vincent Free on 29-5-2015.
