@@ -17,6 +17,8 @@ public class NameNodeTest {
         assertEquals("testNaam", nameNode.getNaam());
         System.out.println(nameNode.getNaam());
     }
+    @Test
+    @Category(com.vijfhart.casus.tree.NameNode.class)
     public void testParentRetrieval(){
         NameNode nameNode = new NameNode("testnaam", new NameNode());
         assertEquals(nameNode,nameNode.getParent());
