@@ -20,8 +20,16 @@ public class NameNodeTest {
     @Test
     @Category(com.vijfhart.casus.tree.NameNode.class)
     public void testParentRetrieval(){
-        NameNode nameNode = new NameNode("testnaam", new NameNode());
+        NameNode nameNode = new NameNode("testnaam", new NameNode(""));
         assertEquals(nameNode,nameNode.getParent());
 
+    }
+
+    @Test
+    @Category(com.vijfhart.casus.tree.NameNode.class)
+    public void testSetNaam() throws Exception {
+        NameNode nameNode=new NameNode("testnaam");
+        nameNode.setNaam("andereNaam");
+        assertEquals("andereNaam",nameNode.getNaam());
     }
 }
