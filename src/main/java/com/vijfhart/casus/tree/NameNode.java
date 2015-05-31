@@ -8,11 +8,14 @@ public class NameNode implements Node<NameNode> {
     private String naam;
     private NameNode parent;
 
-    NameNode(){}
-    NameNode(String naam){
+    public NameNode(){}
+    public NameNode(String naam){
         this.naam = naam;
     }
-    NameNode(String naam,Node node){
+    /**
+     *@param naam naam van de node
+     *@param node de node die je mee geeft?*/
+    public NameNode(String naam,Node node){
         this.naam = naam;
     }
 
