@@ -15,15 +15,14 @@ public class NameNodeTest {
     public void testNameRetrieval(){
         NameNode nameNode = new NameNode("testNaam");
         assertEquals("testNaam", nameNode.getNaam());
-        System.out.println(nameNode.getNaam());
     }
-    @Test
+    /*@Test
     @Category(com.vijfhart.casus.tree.NameNode.class)
     public void testParentRetrieval(){
         NameNode nameNode = new NameNode("testnaam", new NameNode(""));
         assertEquals(nameNode,nameNode.getParent());
 
-    }
+    }*/
 
     @Test
     @Category(com.vijfhart.casus.tree.NameNode.class)
@@ -31,5 +30,18 @@ public class NameNodeTest {
         NameNode nameNode=new NameNode("testnaam");
         nameNode.setNaam("andereNaam");
         assertEquals("andereNaam",nameNode.getNaam());
+    }
+
+    @Test
+    public void testIsLeaf() throws Exception {
+        NameNode nameNode = new NameNode();
+        assertEquals(false,nameNode.isLeaf());
+    }
+    @Test
+    public void testEquals() {
+        NameNode node = new NameNode("test");
+        NameNode node1 = new NameNode("test");
+        assertEquals(true,node.equals(node1));
+        assertEquals(false,node1.equals(new Object()));
     }
 }
