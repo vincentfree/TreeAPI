@@ -1,3 +1,5 @@
+package com.vijfhart.casus.tree;
+
 import com.vijfhart.casus.tree.NameNode;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;

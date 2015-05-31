@@ -96,6 +96,7 @@ public class NameNode implements Node<NameNode> {
      * @param node node wordt doorgegeven vanuit Node
      */
     public int compareLevelTo(NameNode node) {
+
         return 0;
     }
     @Override
