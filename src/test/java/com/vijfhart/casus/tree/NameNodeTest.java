@@ -15,5 +15,11 @@ public class NameNodeTest {
     public void testNameRetrieval(){
         NameNode nameNode = new NameNode("testNaam");
         assertEquals("testNaam", nameNode.getNaam());
+        System.out.println(nameNode.getNaam());
+    }
+    public void testParentRetrieval(){
+        NameNode nameNode = new NameNode("testnaam", new NameNode());
+        assertEquals(nameNode,nameNode.getParent());
+
     }
 }
