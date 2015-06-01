@@ -29,6 +29,9 @@ public class NodeTreeTest {
         tree.add(nodeAdelaar);
         tree.add(nodeVermeulen);
         tree.iterator();
+    }
+    @Test
+    public void testLevel(){
 
     }
 }

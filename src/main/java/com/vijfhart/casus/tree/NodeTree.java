@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class NodeTree implements Tree<NameNode> {
 
+    private NameNode current = new NameNode();
+
     public List<NameNode> getNodeList() {
         return nodeList;
     }
@@ -29,12 +31,29 @@ public class NodeTree implements Tree<NameNode> {
         return new TreeIterator<NameNode>() {
 
             private Iterator<NameNode> treeIterator = nodeList.iterator();
+
             {
                 Collections.sort(nodeList);
                 treeIterator = nodeList.iterator();
             }
+
             public int level() {
-                return 0;
+                int i = 0;
+                current = current.getParent();
+                if (current == null) {
+                    return 0;
+                } else {
+                    while (current != null) {
+                        i++;
+                        current = current.getParent();
+                    }
+
+                }
+                return i;
+            }
+
+            public int getLevel() {
+                return level();
             }
 
             public void startWith(NameNode node) {
@@ -44,12 +63,15 @@ public class NodeTree implements Tree<NameNode> {
             public boolean isLeaf() {
                 return false;
             }
+
             @Override
             public boolean hasNext() {
                 return treeIterator.hasNext();
             }
 
+            @Override
             public NameNode next() {
+                //current = (NameNode)treeIterator;
                 return treeIterator.next();
             }
         };
