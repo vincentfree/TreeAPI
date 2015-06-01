@@ -31,6 +31,7 @@ public class NodeTree implements Tree<NameNode> {
             private Iterator<NameNode> treeIterator = nodeList.iterator();
             {
                 Collections.sort(nodeList);
+                treeIterator = nodeList.iterator();
             }
             public int level() {
                 return 0;
@@ -43,13 +44,13 @@ public class NodeTree implements Tree<NameNode> {
             public boolean isLeaf() {
                 return false;
             }
-
+            @Override
             public boolean hasNext() {
-                return false;
+                return treeIterator.hasNext();
             }
 
             public NameNode next() {
-                return null;
+                return treeIterator.next();
             }
         };
     }

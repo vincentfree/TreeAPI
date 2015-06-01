@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class TreeApp {
 
-    public static void main(String args) {
+    public static void main(String[] args) {
 
         NameNode nodePieters = new NameNode("Pieters");
         NameNode nodeSanders = new NameNode("Sanders", nodePieters);
@@ -17,18 +17,19 @@ public class TreeApp {
         NameNode nodeAdelaar = new NameNode("Adelaar", nodeSanders);
         NameNode nodeSmits = new NameNode("Smits", nodeVermeulen);
 
-        List<NameNode> nameNodeList = new ArrayList<NameNode>();
+        NodeTree nameNodeList = new NodeTree();
+
         nameNodeList.add(nodeSmits);
         nameNodeList.add(nodeAdelaar);
         nameNodeList.add(nodeVermeulen);
         nameNodeList.add(nodePieters);
         nameNodeList.add(nodeSanders);
-
-        Collections.sort(nameNodeList);
-        System.out.println(nameNodeList);
+        nameNodeList.iterator();
+        //Collections.sort(nameNodeList);
+        System.out.println(nameNodeList.getNodeList());
         System.out.println("");
-        for (NameNode node : nameNodeList) {
+       /* for (NameNode node : nameNodeList) {
             System.out.println(node);
-        }
+        }*/
     }
 }
