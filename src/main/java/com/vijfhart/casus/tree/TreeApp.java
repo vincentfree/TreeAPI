@@ -25,7 +25,6 @@ public class TreeApp {
         nameNodeList.add(nodePieters);
         nameNodeList.add(nodeSanders);
         nameNodeList.iterator();
-        //Collections.sort(nameNodeList);
         System.out.println(nameNodeList.getNodeList());
         System.out.println("");
        /* for (NameNode node : nameNodeList) {
