@@ -8,15 +8,20 @@ public class NameNode implements Node<NameNode> {
     private String naam;
     private NameNode parent;
 
-    public NameNode(){}
-    public NameNode(String naam){
+    public NameNode() {
+    }
+
+    public NameNode(String naam) {
         this.naam = naam;
     }
+
     /**
-     *@param naam naam van de node
-     *@param node de node die je mee geeft?*/
-    public NameNode(String naam,Node node){
+     * @param naam naam van de node
+     * @param node de node die je mee geeft?
+     */
+    public NameNode(String naam, NameNode node) {
         this.naam = naam;
+        this.parent = node;
     }
 
     public String getNaam() {
@@ -89,26 +94,30 @@ public class NameNode implements Node<NameNode> {
      *                              from being compared to this object.
      */
     public int compareTo(NameNode o) {
-        return 0;
+        return compareLevelTo(o);
     }
 
     /**
      * @param node node wordt doorgegeven vanuit Node
      */
     public int compareLevelTo(NameNode node) {
+        if (this.getParent() == node.getParent()) return 0;
+        if (this.getParent() == null) return -1;
+        if (node.getParent() == null) return 1;
+        return this.getParent().compareTo(node.getParent());
+    }
 
-        return 0;
-    }
     @Override
-    public String toString(){
-        return "";
+    public String toString() {
+        return "NameNode "+this.getNaam();
     }
+
     @Override
-    public boolean equals(Object object){
+    public boolean equals(Object object) {
         //object
-        if (object instanceof NameNode){
-            NameNode nn =(NameNode)object;
-            if(this.naam == nn.getNaam()){
+        if (object instanceof NameNode) {
+            NameNode nn = (NameNode) object;
+            if (this.naam.equals(nn.getNaam())) {
                 return true;
             }
         }
