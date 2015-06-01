@@ -8,7 +8,9 @@ import java.util.List;
  * Created by Vincent on 1-6-2015.
  */
 public class TreeApp {
-    public static void main(String[] args) {
+
+    public static void main(String args) {
+
         NameNode nodePieters = new NameNode("Pieters");
         NameNode nodeSanders = new NameNode("Sanders", nodePieters);
         NameNode nodeVermeulen = new NameNode("Vermeulen", nodePieters);

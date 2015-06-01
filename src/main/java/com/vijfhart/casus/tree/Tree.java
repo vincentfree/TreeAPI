@@ -7,6 +7,6 @@ import java.util.Collection;
  */
 public interface Tree<E> extends TreeIterable {
     //Collection collection();
-    Tree add(E node);
+    void add(E node);
 
 }
