@@ -5,3 +5,4 @@ test:
     - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
     - mkdir -p $CIRCLE_TEST_REPORTS/deployfile/
     - find . -type f -regex ".*/target/.*jar" -exec cp {} $CIRCLE_TEST_REPORTS/deployfile/ \;
+    - cp -r ./target/site/cobertura/ $CIRCLE_TEST_REPORTS/webreport/

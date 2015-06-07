@@ -41,6 +41,15 @@ public class NameNodeTest {
     }
 
     @Test
+    public void testSetParent() throws Exception {
+        NameNode nameNode = new NameNode("testnode");
+        NameNode nameNode1 = new NameNode("ChildNode");
+        nameNode1.setParent(nameNode);
+        assertEquals(nameNode,nameNode1.getParent());
+
+    }
+
+    @Test
     public void testIsLeaf() throws Exception {
         NameNode nameNode = new NameNode();
         assertEquals(false, nameNode.isLeaf());
