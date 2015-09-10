@@ -25,8 +25,8 @@
         <module name="TreeAPI" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="TreeAPI" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="TreeAPI" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

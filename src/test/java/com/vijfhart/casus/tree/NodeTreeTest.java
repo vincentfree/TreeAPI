@@ -14,13 +14,7 @@ public class NodeTreeTest {
     NameNode nodeVermeulen = new NameNode("Vermeulen", nodePieters);
     NameNode nodeAdelaar = new NameNode("Adelaar", nodeSanders);
 
-    @Test
-    public void testAddNewValue() throws Exception {
-        NodeTree tree = new NodeTree();
-        NameNode node = new NameNode();
-        tree.add(node);
-        assertEquals(1,tree.getNodeList().size());
-    }
+
     @Test
     public void testTreeIterator(){
         NodeTree tree = new NodeTree();
@@ -29,9 +23,5 @@ public class NodeTreeTest {
         tree.add(nodeAdelaar);
         tree.add(nodeVermeulen);
         tree.iterator();
-    }
-    @Test
-    public void testLevel(){
-
     }
 }

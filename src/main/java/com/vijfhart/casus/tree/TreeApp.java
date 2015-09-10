@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Created by Vincent on 1-6-2015.
  */
+
 public class TreeApp {
 
     public static void main(String[] args) {
@@ -26,10 +27,12 @@ public class TreeApp {
         nameNodeList.add(nodePieters);
         nameNodeList.add(nodeSanders);
         nameNodeList.iterator();
-        System.out.println(nameNodeList.getNodeList());
-        System.out.println(nameNodeList.getNodeList());
-       /* for (NameNode node : nameNodeList) {
+        //System.out.println(nameNodeList.getNodeList());
+        //System.out.println(nameNodeList.getNodeList());
+
+/* for (NameNode node : nameNodeList) {
             System.out.println(node);
         }*/
+
     }
 }
