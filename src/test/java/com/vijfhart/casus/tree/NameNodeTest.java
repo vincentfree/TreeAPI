@@ -20,7 +20,7 @@ public class NameNodeTest {
     @Test
     public void testToString() throws Exception {
         NameNode nameNode = new NameNode("testNaam");
-        assertEquals("NameNode " + nameNode.getName(), nameNode.toString());
+        assertEquals(nameNode.getName(), nameNode.toString());
     }
 
     /*@Test
@@ -38,13 +38,5 @@ public class NameNodeTest {
         nameNode1.setParent(nameNode);
         assertEquals(nameNode,nameNode1.getParent());
 
-    }
-
-    @Test
-    public void testEquals() {
-        NameNode node = new NameNode("test");
-        NameNode node1 = new NameNode("test");
-        assertEquals(true, node.equals(node1));
-        assertEquals(false, node1.equals(new Object()));
     }
 }
