@@ -1,12 +1,12 @@
 package com.vijfhart.casus.tree;
+import java.util.*;
 
-import java.util.Iterator;
+public interface TreeIterator<T extends Node<T>> extends Iterator<T> {
+  
+  int level();
+  void startWith(T t);
+  String path(NodeString<T> nodeString , String separator);
+  void orderSiblingsBy(Comparator<T> comparator);
+  boolean isLeaf();
 
-/**
- * Created by a591220 on 29-5-2015.
- */
-public interface TreeIterator<E extends Node<E>> extends Iterator<E> {
-    int level();
-    void startWith(E node);
-    boolean isLeaf();
 }

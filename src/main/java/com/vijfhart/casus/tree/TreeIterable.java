@@ -1,14 +1,8 @@
 package com.vijfhart.casus.tree;
-
 import java.util.Iterator;
 
-/**
- * Created by Vincent Free on 29-5-2015.
- */
-public interface TreeIterable extends Iterable {
-    /**
-     *
-     * @return Iterator or TreeIterator
-     */
-    Iterator iterator();
+public interface TreeIterable<T extends Node<T>> extends Iterable<T> {
+
+   TreeIterator<T> iterator();
+   void add(T t);
 }

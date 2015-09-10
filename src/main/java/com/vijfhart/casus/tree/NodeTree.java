@@ -1,101 +1,191 @@
 package com.vijfhart.casus.tree;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+public class NodeTree<T extends Node<T>> implements Tree<T> {
+  
 
-/**
- * Created by Vincent on 1-6-2015.
- */
-public class NodeTree implements Tree<NameNode> {
+  private ArrayList<T> nodeList = new ArrayList<>();
 
-    private NameNode current = new NameNode();
 
-    public List<NameNode> getNodeList() {
-        return nodeList;
+  public NodeTree(){}
+
+  public NodeTree(List<T> tree){
+    nodeList=new ArrayList<T>();
+    for(T t:tree){
+       nodeList.add(t);
     }
+  }
 
 
-    private List<NameNode> nodeList = new ArrayList<NameNode>();
+  public void add(T t){
+     nodeList.add(t);
+  }
 
-    public void add(NameNode node) {
-        nodeList.add(node);
+
+  public List<T> descendantsOf(T node){
+    NodeTree<T> copy = new NodeTree<>(nodeList);
+    TreeIterator<T> iterator = copy.iterator();
+    iterator.startWith(node);
+    List<T> list = new ArrayList<>();
+    while(iterator.hasNext()){
+      list.add(iterator.next());
     }
+    return list;
+  }
 
-    /**
-     * @return Iterator or TreeIterator
-     */
-    public Iterator<NameNode> iterator() {
-
-        return new TreeIterator<NameNode>() {
-
-            private Iterator<NameNode> treeIterator = nodeList.iterator();
-
-            {
-                Collections.sort(nodeList);
-                treeIterator = nodeList.iterator();
-            }
-
-            public int level() {
-                int i = 0;
-                current = current.getParent();
-                if (current == null) {
-                    return 0;
-                } else {
-                    while (current != null) {
-                        i++;
-                        current = current.getParent();
-                    }
-
-                }
-                return i;
-            }
-
-            public int getLevel() {
-                return level();
-            }
-
-            public void startWith(NameNode node) {
-
-            }
-
-            public boolean isLeaf() {
-                return false;
-            }
-
-            @Override
-            public boolean hasNext() {
-                return treeIterator.hasNext();
-            }
-
-            @Override
-            public NameNode next() {
-                //current = (NameNode)treeIterator;
-                return treeIterator.next();
-            }
-
-            /**
-             * Removes from the underlying collection the last element returned
-             * by this iterator (optional operation).  This method can be called
-             * only once per call to {@link #next}.  The behavior of an iterator
-             * is unspecified if the underlying collection is modified while the
-             * iteration is in progress in any way other than by calling this
-             * method.
-             *
-             * @throws UnsupportedOperationException if the {@code remove}
-             *                                       operation is not supported by this iterator
-             * @throws IllegalStateException         if the {@code next} method has not
-             *                                       yet been called, or the {@code remove} method has already
-             *                                       been called after the last call to the {@code next}
-             *                                       method
-             * @implSpec The default implementation throws an instance of
-             * {@link UnsupportedOperationException} and performs no other action.
-             */
-            @Override
-            public void remove() {
-                
-            }
-        };
+  public int descendantCount(T t){
+    List<T> list = descendantsOf(t);
+ /*   int count=0;
+    for(T node: list){
+      count+=node.descendantCount();
     }
+    return count;
+  */
+    return descendantsOf(t).size()-1;
+  }
+
+
+  public int descendantSum(T t, NodeInt<T> nodeInt){
+    List<T> list = descendantsOf(t);
+    int sum=0;
+    for(T node: list){
+      sum+=nodeInt.get(node);
+    }
+    return sum;
+  }
+
+  public double descendantSum(T t, NodeDouble<T> nodeInt){
+    List<T> list = descendantsOf(t);
+    double sum=0;
+    for(T node: list){
+      sum+=nodeInt.get(node);
+    }
+    return sum;
+  }
+
+  public TreeIterator<T> iterator(){
+     return new TreeIterator<T>(){
+         
+         private Iterator<T> iterator=nodeList.iterator(); 
+         private T current;
+         private List<T> ancestors = new ArrayList<>();
+         private boolean nextCalled;
+         private T startWith;
+         private boolean started;
+         private TreeComparator<T> treeComparator = new TreeComparator<>();
+
+         {
+          Collections.sort(nodeList);
+          iterator = nodeList.iterator();
+         }
+
+
+         public void startWith(T startWith){
+           if(started)
+             throw new IllegalStateException(
+              "startWith can only be called before the first call to next");
+           List<T> list=new ArrayList<>();
+           this.startWith=startWith;
+           T node = null;
+           while(iterator.hasNext()){
+              node = iterator.next();
+              if(childOfStartWith(node))
+                list.add(node);
+            }
+           this.iterator=list.iterator();
+           started=true;
+         }
+
+         public void orderSiblingsBy(Comparator<T> comparator){
+           
+           this.treeComparator.orderSiblingsBy(comparator);
+           Collections.sort(nodeList, treeComparator);
+           iterator=nodeList.iterator();
+         }
+
+         private boolean childOfStartWith(T t){
+           T node = t;
+           if(node == startWith) return true;
+           while(node.getParent() != null){
+             if(node.getParent()==startWith) return true;
+             node=node.getParent();
+           }
+           return false;
+         }
+
+         public boolean hasNext(){
+           return iterator.hasNext();
+         }
+
+         public T next(){
+           if(iterator.hasNext()){
+             ancestors.clear();
+             current=iterator.next();
+             fillAncestors(current);
+             nextCalled=true;
+             started=true;
+             return current;
+           }
+           else throw new IllegalStateException("Last element has been reached");
+         }
+
+         public int descendantCount(){
+           return NodeTree.this.descendantCount(current);
+         }
+
+         public int level(){
+           return ancestors.size();
+         }
+         
+         private void fillAncestors(T t){
+           if(t==startWith) return ;
+           T node=t;
+           while(node.getParent()!=null){
+             if(node.getParent()==startWith){
+               ancestors.add(node.getParent());
+               return;
+             }
+             ancestors.add(node.getParent());
+             node=node.getParent();
+           }
+         }
+
+         public boolean isLeaf(){
+           return descendantsOf(current).size()==1;
+         }
+
+         public void remove(){
+            if(nextCalled){
+              if(isLeaf()){
+                nodeList.remove(current);
+                iterator.remove();
+                nextCalled=false;
+              }
+              else {
+                throw new RuntimeException(String.format( "%s is a parent, so can't be removed", current));
+              }
+            }
+            else {
+              throw new IllegalStateException("remove can only be called after a call to next");
+            }
+         }
+
+         public String path(NodeString<T> nodeString, String separator){
+           StringBuilder sb = new StringBuilder();
+           //T t = current;
+           //for(int i=0;i<=level();i++){
+           sb.append(new StringBuilder(separator).append(nodeString.get(current)));
+           for(T t:ancestors){
+              sb.insert(0,new StringBuilder(separator).append(nodeString.get(t)));
+            //  t=t.getParent();
+           }
+
+           return sb.toString();
+         }
+
+     };
+  }
+
+
 }
+
