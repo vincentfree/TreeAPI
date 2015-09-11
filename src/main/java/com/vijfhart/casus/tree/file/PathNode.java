@@ -8,9 +8,22 @@ import java.nio.file.Path;
  * Created by Vincent Free on 10-9-2015.
  */
 public class PathNode extends WrapperNode<PathNode, Path> {
-    protected Path path;
-    //T obj;
+    private Path path;
+
     protected PathNode(Path object, PathNode pathNode) {
         super(object,pathNode);
+    }
+
+    public PathNode(Path object) {
+        super(object);
+        setPath(object);
+    }
+
+    public Path getPath() {
+        return path;
+    }
+
+    public void setPath(Path path) {
+        this.path = path;
     }
 }

@@ -286,7 +286,6 @@ public class NodeTree<T extends Node<T>> implements Tree<T> {
 
                 return sb.toString();
             }
-
         };
     }
 }
