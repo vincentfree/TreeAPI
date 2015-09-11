@@ -12,7 +12,6 @@ import java.nio.file.attribute.BasicFileAttributes;
  */
 public class FileTree {
     NodeTree<PathNode> nodeTree = new NodeTree<>();
-
     FileTree() {    }
 
     FileTree(String pathName) {
@@ -31,7 +30,7 @@ public class FileTree {
             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
                 if(Files.isDirectory(dir)){
                     //currentDir(,dir);
-                    
+
                 }
                 return FileVisitResult.CONTINUE;
             }
