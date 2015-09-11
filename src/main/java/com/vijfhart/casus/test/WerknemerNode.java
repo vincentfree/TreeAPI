@@ -5,13 +5,10 @@ class WerknemerNode extends AbstractNode<WerknemerNode>{
   private WerknemerNode parent;
 
   WerknemerNode(Werknemer werknemer, WerknemerNode parent){
-   this.werknemer=werknemer;
-   setParent(parent);
+    this.werknemer=werknemer;
+    setParent(parent);
   }
 
-  WerknemerNode(Werknemer werknemer){
-   this.werknemer=werknemer;
-  }
 
   public Werknemer getWerknemer(){
     return werknemer;

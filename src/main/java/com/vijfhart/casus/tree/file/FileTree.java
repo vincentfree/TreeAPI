@@ -4,8 +4,8 @@ import com.vijfhart.casus.tree.NodeTree;
 import com.vijfhart.casus.tree.Tree;
 
 /**
- * Created by nerom on 10-9-2015.
+ * Created by Vincent Free on 10-9-2015.
  */
 public class FileTree {
-    //Tree tree = new NodeTree<PathNode>();
+    Tree tree = new NodeTree<PathNode>();
 }
